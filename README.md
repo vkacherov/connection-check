@@ -9,7 +9,7 @@ az acr build --image connection-check --platform windows https://github.com/vkac
 ```
 
 ## Deployment
-We can deploy this using the following command
+We can deploy this using the following command. **Note:** Be sure to update the container registry/image/tag with your own settings.
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/vkacherov/connection-check/master/k8s/connection-check.yaml
