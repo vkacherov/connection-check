@@ -12,10 +12,12 @@ router.get('/', function(req, res, next) {
     }
 
     checkInternetConnected(config)
-      .then(() => {
-        config.title = 'Internet available';        
+      .then((result) => {
+        config.title = 'Internet available';
+        config.result = result;        
       }).catch((error) => {
         config.title = 'No internet';
+        config.error = error;
       }).finally(() => {
         res.render('index', config );
       });
