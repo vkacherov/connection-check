@@ -1,5 +1,5 @@
-# connection-check
-Sample containerized service to check internet connection
+# Connectivity Checker
+This is a sample Node Express app that checks internet connectivity from a Windows Docker container
 
 ## Build
 We will use Azure Container Registry to build it for various platforms
