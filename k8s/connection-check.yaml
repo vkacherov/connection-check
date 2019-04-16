@@ -1,0 +1,37 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: connection-check
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: connection-check
+  template:
+    metadata:
+      labels:
+        app: connection-check
+    spec:
+      containers:
+      - name: connection-check
+        image: vadimacr.azurecr.io/connection-check:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: vadim-acr-auth
+      nodeSelector:
+          "beta.kubernetes.io/os": windows
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: connection-check
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: connection-check         
